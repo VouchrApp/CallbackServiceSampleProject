@@ -35,11 +35,11 @@ vouchr.signature.public-key.api-key=SURPRIISE_APP
 
 ## Customizing
 
-### com.example.vouchr.payments.callbackservice.controller.CallbackCreateController.create -
+### com.example.vouchr.payments.callbackservice.controller.CallbackCreateController.create
 
 this receives requests from the VouchrSDK whenever a voucher is created.  It contains voucher and payment destination info and should return any payment information that should be added to the voucher on create.
 
-### com.example.vouchr.payments.callbackservice.controller.CallbackClaimController.claim -
+### com.example.vouchr.payments.callbackservice.controller.CallbackClaimController.claim
 
 this receives requests from the VouchrSDK whenever a voucher is claimed.  It contains voucher and payment destination info and should return any payment information that should be added to the voucher on claim.  
 
