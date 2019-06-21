@@ -13,10 +13,10 @@ This is a [Spring Boot](https://spring.io/projects/spring-boot) project, harness
 
 ## Project layout
 
-ca.vouchr.payments.callbacks - Standard VouchrSDK callbacks components that should be useful to you.  You should not have to modify anything in here
-ca.vouchr.payments.callbacks.conf - Contains authentication and validation components to ensure the validity of data posted to you
-ca.vouchr.payments.callbacks.dto - Vouchr SDK Dto models representing the incoming and returned data
-ca.vouchr.payments.callbacks.service - Vouchr Signature service - verifies the signature on jwt and well as the signatures of the request contents
+* ca.vouchr.payments.callbacks - Standard VouchrSDK callbacks components that should be useful to you.  You should not have to modify anything in here
+* ca.vouchr.payments.callbacks.conf - Contains authentication and validation components to ensure the validity of data posted to you
+* ca.vouchr.payments.callbacks.dto - Vouchr SDK Dto models representing the incoming and returned data
+* ca.vouchr.payments.callbacks.service - Vouchr Signature service - verifies the signature on jwt and well as the signatures of the request contents
 
 ## Configuration
 
