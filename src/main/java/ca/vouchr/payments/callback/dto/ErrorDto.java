@@ -7,6 +7,14 @@ public class ErrorDto {
 
     private ErrorDetailsDto error;
 
+    public ErrorDetailsDto getError() {
+        return error;
+    }
+
+    public void setError(ErrorDetailsDto error) {
+        this.error = error;
+    }
+
     public static class ErrorDetailsDto {
 
         private ErrorType type;
@@ -48,16 +56,6 @@ public class ErrorDto {
         }
 
 
-
-        public enum ErrorType { CREATOR_ERROR, RECIPIENT_ERROR, SERVER_ERROR, TEMPORARY_ERROR }
-    }
-
-
-    public ErrorDetailsDto getError() {
-        return error;
-    }
-
-    public void setError(ErrorDetailsDto error) {
-        this.error = error;
+        public enum ErrorType {CREATOR_ERROR, RECIPIENT_ERROR, SERVER_ERROR, TEMPORARY_ERROR}
     }
 }

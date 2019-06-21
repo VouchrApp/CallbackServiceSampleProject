@@ -6,31 +6,9 @@ import java.util.Collection;
 public class UserDto {
 
 
-
     private String firstName;
     private String lastName;
     private Collection<UserIdDto> userIds = new ArrayList<>();
-
-    public static class UserIdDto {
-        private String type;
-        private String id;
-
-        public String getType() {
-            return type;
-        }
-
-        public void setType(String type) {
-            this.type = type;
-        }
-
-        public String getId() {
-            return id;
-        }
-
-        public void setId(String id) {
-            this.id = id;
-        }
-    }
 
     public String getFirstName() {
         return firstName;
@@ -54,6 +32,27 @@ public class UserDto {
 
     public void setUserIds(Collection<UserIdDto> userIds) {
         this.userIds = userIds;
+    }
+
+    public static class UserIdDto {
+        private String type;
+        private String id;
+
+        public String getType() {
+            return type;
+        }
+
+        public void setType(String type) {
+            this.type = type;
+        }
+
+        public String getId() {
+            return id;
+        }
+
+        public void setId(String id) {
+            this.id = id;
+        }
     }
 
 

@@ -18,7 +18,6 @@ public class VouchrAuthentication implements Authentication {
     private boolean authenticated;
 
 
-
     public VouchrAuthentication() {
 
     }
@@ -33,7 +32,7 @@ public class VouchrAuthentication implements Authentication {
             principal.setAudience(claims.getAudience().get(0));
             principal.setIpAddress(claims.getStringClaim("ip"));
             principal.setVoucherId(claims.getStringClaim("vouchrId"));
-        } catch(ParseException ex) {
+        } catch (ParseException ex) {
             logger.log(Level.WARNING, "Error parsing claims", ex);
         }
 

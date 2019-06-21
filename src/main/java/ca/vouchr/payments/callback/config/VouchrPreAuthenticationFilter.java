@@ -3,8 +3,6 @@ package ca.vouchr.payments.callback.config;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
-import org.springframework.web.util.ContentCachingRequestWrapper;
-import org.springframework.web.util.ContentCachingResponseWrapper;
 
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -31,6 +29,22 @@ import java.util.logging.Logger;
 public class VouchrPreAuthenticationFilter implements Filter {
 
     private static final Logger logger = Logger.getLogger(VouchrPreAuthenticationFilter.class.getName());
+
+    private static byte[] toByteArray(InputStream inputStream) throws IOException {
+
+        ByteArrayOutputStream os = new ByteArrayOutputStream();
+
+        byte[] buffer = new byte[1024];
+        int len;
+
+        // read bytes from the input stream and store them in buffer
+        while ((len = inputStream.read(buffer)) != -1) {
+            // write bytes from the buffer into output stream
+            os.write(buffer, 0, len);
+        }
+
+        return os.toByteArray();
+    }
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
@@ -59,7 +73,7 @@ public class VouchrPreAuthenticationFilter implements Filter {
 
             byte[] signature = new byte[0];
             byte[] content = new byte[0];
-            if(!StringUtils.isEmpty(vouchrSignature)) {
+            if (!StringUtils.isEmpty(vouchrSignature)) {
                 signature = Base64.getUrlDecoder().decode(vouchrSignature);
                 //content = requestToCache.getContentAsByteArray();
                 content = toByteArray(requestToCache.getInputStream());
@@ -82,8 +96,13 @@ public class VouchrPreAuthenticationFilter implements Filter {
             requestToCache.resetInputStream();
             chain.doFilter(requestToCache, response);
         } else {
-            chain.doFilter(request,response);
+            chain.doFilter(request, response);
         }
+    }
+
+    @Override
+    public void destroy() {
+
     }
 
     private static class ResettableStreamHttpServletRequest extends
@@ -101,7 +120,7 @@ public class VouchrPreAuthenticationFilter implements Filter {
 
 
         public void resetInputStream() {
-            if(rawData != null) {
+            if (rawData != null) {
                 servletStream.setSourceStream(new ByteArrayInputStream(rawData));
             }
         }
@@ -131,12 +150,6 @@ public class VouchrPreAuthenticationFilter implements Filter {
 
             private boolean finished = false;
 
-
-            private void setSourceStream(InputStream sourceStream) {
-                this.sourceStream = sourceStream;
-                this.finished = false;
-            }
-
             /**
              * Return the underlying source stream (never {@code null}).
              */
@@ -144,6 +157,10 @@ public class VouchrPreAuthenticationFilter implements Filter {
                 return this.sourceStream;
             }
 
+            private void setSourceStream(InputStream sourceStream) {
+                this.sourceStream = sourceStream;
+                this.finished = false;
+            }
 
             @Override
             public int read() throws IOException {
@@ -180,27 +197,5 @@ public class VouchrPreAuthenticationFilter implements Filter {
                 throw new UnsupportedOperationException();
             }
         }
-    }
-
-
-    private static byte[] toByteArray(InputStream inputStream) throws IOException {
-
-        ByteArrayOutputStream os = new ByteArrayOutputStream();
-
-        byte[] buffer = new byte[1024];
-        int len;
-
-        // read bytes from the input stream and store them in buffer
-        while ((len = inputStream.read(buffer)) != -1) {
-            // write bytes from the buffer into output stream
-            os.write(buffer, 0, len);
-        }
-
-        return os.toByteArray();
-    }
-
-    @Override
-    public void destroy() {
-
     }
 }

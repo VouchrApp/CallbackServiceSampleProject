@@ -49,7 +49,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
 
-
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
@@ -69,10 +68,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     public void configure(AuthenticationManagerBuilder auth) throws Exception {
-         auth.authenticationProvider(jwtAuthenticationProvider);
+        auth.authenticationProvider(jwtAuthenticationProvider);
 
     }
-
 
 
 }

@@ -7,7 +7,7 @@ public class ServletInitializer extends SpringBootServletInitializer {
 
     public ServletInitializer() {
         super();
-        setRegisterErrorPageFilter(false); 
+        setRegisterErrorPageFilter(false);
     }
 
     @Override

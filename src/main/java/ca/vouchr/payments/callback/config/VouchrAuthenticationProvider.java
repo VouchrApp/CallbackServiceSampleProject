@@ -2,7 +2,6 @@ package ca.vouchr.payments.callback.config;
 
 import ca.vouchr.payments.callback.service.VouchrSignatureService;
 import com.nimbusds.jose.crypto.RSASSAVerifier;
-import com.nimbusds.jose.util.IOUtils;
 import com.nimbusds.jwt.JWTClaimsSet;
 import com.nimbusds.jwt.JWTParser;
 import com.nimbusds.jwt.SignedJWT;
@@ -18,8 +17,6 @@ import org.springframework.stereotype.Component;
 import java.security.interfaces.RSAPublicKey;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
-import static java.nio.charset.StandardCharsets.UTF_8;
 
 @Component
 public class VouchrAuthenticationProvider implements AuthenticationProvider {
@@ -52,7 +49,7 @@ public class VouchrAuthenticationProvider implements AuthenticationProvider {
 
 
                 VouchrAuthentication authToken = new VouchrAuthentication(claims);
-                if(vouchrSignatureService.verify(vouchrPreAuthentication.getBodyContent(), vouchrPreAuthentication.getBodySignature())) {
+                if (vouchrSignatureService.verify(vouchrPreAuthentication.getBodyContent(), vouchrPreAuthentication.getBodySignature())) {
 
 
                     authToken.setAuthenticated(true);
