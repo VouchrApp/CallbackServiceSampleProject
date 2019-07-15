@@ -28,6 +28,7 @@ public class VouchrSignatureServiceImpl implements VouchrSignatureService {
 
     private static final Logger logger = Logger.getLogger(VouchrSignatureServiceImpl.class.getName());
     private static RSAPublicKey publicKey = null;
+    
     @Autowired
     private VouchrConfigurationProperties vouchrConfigurationProperties;
 

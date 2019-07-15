@@ -21,7 +21,6 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.nio.charset.StandardCharsets;
 import java.util.Base64;
 import java.util.logging.Logger;
 
@@ -66,8 +65,6 @@ public class VouchrPreAuthenticationFilter implements Filter {
 
             String authorization = servletRequest.getHeader("Authorization");
 
-            logger.info("GOT AUTHORIZATION HEADER: " + authorization);
-            logger.info("GOT SIGNATURE: " + vouchrSignature);
 
             String bearerToken = null;
 
@@ -75,9 +72,8 @@ public class VouchrPreAuthenticationFilter implements Filter {
             byte[] content = new byte[0];
             if (!StringUtils.isEmpty(vouchrSignature)) {
                 signature = Base64.getUrlDecoder().decode(vouchrSignature);
-                //content = requestToCache.getContentAsByteArray();
+
                 content = toByteArray(requestToCache.getInputStream());
-                logger.info("CONTENT: " + new String(content, StandardCharsets.UTF_8));
             }
 
 
@@ -89,9 +85,6 @@ public class VouchrPreAuthenticationFilter implements Filter {
                 SecurityContextHolder.getContext().setAuthentication(authToken);
             }
 
-            logger.info("chain.doFilter()");
-
-            //chain.doFilter(request,response);
 
             requestToCache.resetInputStream();
             chain.doFilter(requestToCache, response);
@@ -102,7 +95,7 @@ public class VouchrPreAuthenticationFilter implements Filter {
 
     @Override
     public void destroy() {
-
+        // no cleanup required
     }
 
     private static class ResettableStreamHttpServletRequest extends
