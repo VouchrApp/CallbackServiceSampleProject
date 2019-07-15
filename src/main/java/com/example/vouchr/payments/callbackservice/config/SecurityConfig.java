@@ -59,7 +59,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .anyRequest().authenticated()
                 .and()
                 .addFilterBefore(bearerTokenAuthenticationFilter, BasicAuthenticationFilter.class)
-                //.anyRequest().permitAll()
                 .cors()
                 .and().csrf().disable();
 
