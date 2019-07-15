@@ -64,7 +64,7 @@ public class VouchrAuthenticationProvider implements AuthenticationProvider {
                 logger.warning("VOUCHR AUTH: vouchr jwt signature invalid");
             }
         } catch (Exception ex) {
-            logger.log(Level.WARNING, "VOUCHR AUTH: vouchr jwt invalid " + ex.getMessage());
+            logger.log(Level.WARNING, "VOUCHR AUTH: vouchr jwt invalid {0}", ex.getMessage());
 
         }
 
