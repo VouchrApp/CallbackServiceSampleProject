@@ -7,9 +7,11 @@ public class CreateRequestDto {
     private String voucherId;
     private UserDto sender;
     private UserDto recipient;
-    private CreateRequestPaymentDto payment = new CreateRequestPaymentDto();
+    private CallbackSourcePaymentDto payment = new CallbackSourcePaymentDto();
     private BigDecimal amount;
     private String currency;
+    private String ipAddress;
+    private ShareUrlDto claimUrl;
 
     public String getVoucherId() {
         return voucherId;
@@ -51,15 +53,31 @@ public class CreateRequestDto {
         this.currency = currency;
     }
 
-    public CreateRequestPaymentDto getPayment() {
+    public CallbackSourcePaymentDto getPayment() {
         return payment;
     }
 
-    public void setPayment(CreateRequestPaymentDto payment) {
+    public void setPayment(CallbackSourcePaymentDto payment) {
         this.payment = payment;
     }
 
-    public static class CreateRequestPaymentDto {
+    public String getIpAddress() {
+        return ipAddress;
+    }
+
+    public void setIpAddress(String ipAddress) {
+        this.ipAddress = ipAddress;
+    }
+
+    public ShareUrlDto getClaimUrl() {
+        return claimUrl;
+    }
+
+    public void setClaimUrl(ShareUrlDto claimUrl) {
+        this.claimUrl = claimUrl;
+    }
+
+    public static class CallbackSourcePaymentDto {
         private PaymentSourceDto source;
 
         public PaymentSourceDto getSource() {

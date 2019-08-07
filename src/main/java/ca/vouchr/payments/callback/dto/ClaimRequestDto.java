@@ -10,6 +10,7 @@ public class ClaimRequestDto {
     private ClaimRequestPaymentDto payment = new ClaimRequestPaymentDto();
     private BigDecimal amount;
     private String currency;
+    private String ipAddress;
 
     public UserDto getSender() {
         return sender;
@@ -59,6 +60,14 @@ public class ClaimRequestDto {
         this.payment = payment;
     }
 
+    public String getIpAddress() {
+        return ipAddress;
+    }
+
+    public void setIpAddress(String ipAddress) {
+        this.ipAddress = ipAddress;
+    }
+
 
     public static class ClaimRequestPaymentDto {
         private PaymentDestDto dest;
@@ -71,5 +80,6 @@ public class ClaimRequestDto {
             this.dest = dest;
         }
     }
+
 
 }
