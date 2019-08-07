@@ -1,7 +1,12 @@
 package ca.vouchr.payments.callback.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
+
 import java.math.BigDecimal;
 
+@JsonIgnoreProperties(ignoreUnknown = true)
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class ClaimRequestDto {
 
     private String voucherId;
@@ -10,6 +15,7 @@ public class ClaimRequestDto {
     private ClaimRequestPaymentDto payment = new ClaimRequestPaymentDto();
     private BigDecimal amount;
     private String currency;
+    private String ipAddress;
 
     public UserDto getSender() {
         return sender;
@@ -59,7 +65,16 @@ public class ClaimRequestDto {
         this.payment = payment;
     }
 
+    public String getIpAddress() {
+        return ipAddress;
+    }
 
+    public void setIpAddress(String ipAddress) {
+        this.ipAddress = ipAddress;
+    }
+
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     public static class ClaimRequestPaymentDto {
         private PaymentDestDto dest;
 
@@ -71,5 +86,6 @@ public class ClaimRequestDto {
             this.dest = dest;
         }
     }
+
 
 }
