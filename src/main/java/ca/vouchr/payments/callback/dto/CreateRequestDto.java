@@ -1,7 +1,13 @@
 package ca.vouchr.payments.callback.dto;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
+
 import java.math.BigDecimal;
 
+@JsonIgnoreProperties(ignoreUnknown = true)
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class CreateRequestDto {
 
     private String voucherId;
@@ -77,6 +83,8 @@ public class CreateRequestDto {
         this.claimUrl = claimUrl;
     }
 
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     public static class CallbackSourcePaymentDto {
         private PaymentSourceDto source;
 

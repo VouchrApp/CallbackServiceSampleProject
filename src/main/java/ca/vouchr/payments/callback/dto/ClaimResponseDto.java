@@ -1,5 +1,10 @@
 package ca.vouchr.payments.callback.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
+
+@JsonIgnoreProperties(ignoreUnknown = true)
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class ClaimResponseDto {
 
     private ClaimResponsePaymentDto payment = new ClaimResponsePaymentDto();
@@ -8,6 +13,8 @@ public class ClaimResponseDto {
         return payment;
     }
 
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     public static class ClaimResponsePaymentDto {
         private PaymentDestDto dest;
         private PaymentRedeemDto redeem;
