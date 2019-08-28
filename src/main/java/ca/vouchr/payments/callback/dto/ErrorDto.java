@@ -1,8 +1,11 @@
 package ca.vouchr.payments.callback.dto;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+
 import java.util.ArrayList;
 import java.util.Collection;
 
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class ErrorDto {
 
     private ErrorDetailsDto error;
@@ -15,6 +18,7 @@ public class ErrorDto {
         this.error = error;
     }
 
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     public static class ErrorDetailsDto {
 
         private ErrorType type;

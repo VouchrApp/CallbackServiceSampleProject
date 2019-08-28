@@ -54,6 +54,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .authorizeRequests()
                 .antMatchers(
+                        "/service/status",
                         "/_ah/*"   // this is for appengine to allow startup
                 ).permitAll()
                 .anyRequest().authenticated()
