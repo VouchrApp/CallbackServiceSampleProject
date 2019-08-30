@@ -29,7 +29,9 @@ public class VouchrAuthentication implements Authentication {
         principal = new VouchrPrincipal();
         try {
             principal.setSubject(claims.getSubject());
-            principal.setAudience(claims.getAudience().get(0));
+            if(!claims.getAudience().isEmpty()) {
+                principal.setAudience(claims.getAudience().get(0));
+            }
             principal.setIpAddress(claims.getStringClaim("ip"));
             principal.setVoucherId(claims.getStringClaim("vouchrId"));
         } catch (ParseException ex) {

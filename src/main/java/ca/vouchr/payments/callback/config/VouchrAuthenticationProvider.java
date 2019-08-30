@@ -37,7 +37,7 @@ public class VouchrAuthenticationProvider implements AuthenticationProvider {
             VouchrPreAuthentication vouchrPreAuthentication = (VouchrPreAuthentication) auth;
             RSAPublicKey publicKey = (RSAPublicKey) vouchrSignatureService.getPublicKey();
 
-            logger.info("" + auth.getCredentials());
+            logger.info("Cred: " + auth.getCredentials());
 
             SignedJWT jwt = (SignedJWT) JWTParser.parse((String) auth.getCredentials());
             if (jwt.verify(new RSASSAVerifier(publicKey))) {
@@ -64,7 +64,7 @@ public class VouchrAuthenticationProvider implements AuthenticationProvider {
                 logger.warning("VOUCHR AUTH: vouchr jwt signature invalid");
             }
         } catch (Exception ex) {
-            logger.log(Level.WARNING, "VOUCHR AUTH: vouchr jwt invalid {0}", ex.getMessage());
+            logger.log(Level.WARNING, "VOUCHR AUTH: vouchr jwt invalid", ex);
 
         }
 
